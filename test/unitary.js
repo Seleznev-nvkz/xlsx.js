@@ -3,10 +3,10 @@ var xlsx = require('../xlsx');
 var fs = require('fs-extra');
 var path = require('path');
 
-describe('XlsX.js unit tests', function() {
+describe('XlsX.js unit tests', function () {
 
   var file = path.join('test', 'output', 'inflate-1.xlsx');
-  
+
   before(function(done) {
     fs.remove(file, function(err) {
       if (err) {
@@ -14,9 +14,9 @@ describe('XlsX.js unit tests', function() {
       }
       fs.createFile(file, done);
     });
-  })
+  });
 
-  it('should simple xlsx be written (you can manually check '+file+')', function(done) {
+  it('should simple xlsx be written (you can manually check ' + file + ')', function (done) {
     var sheet = xlsx({
       creator: 'John Doe',
       lastModifiedBy: 'Meg White',
@@ -31,11 +31,11 @@ describe('XlsX.js unit tests', function() {
       },{
         data: [
           ['formatting test'],
-          [{formatCode: '0.00', value:'1'}, 
-           {italic:1, bold:1, hAlign:'center', borders:{bottom:'DEE31D'}, value:'B1'}, 
-           {borders:{bottom:64}, value:'C1'},
-           {fontName: 'Arial', value:'D1'},
-           {fontSize: 8, value:'E1'}, 
+          [{formatCode: '0.00', value: '1'},
+           {italic: 1, bold: 1, hAlign: 'center', borders: {bottom: 'DEE31D'}, value: 'B1'},
+           {borders: {bottom: 64}, value: 'C1'},
+           {fontName: 'Arial', value: 'D1'},
+           {fontSize: 8, value: 'E1'},
            {italic:1, bold:1, value: 'F1'}
           ]
         ],
@@ -50,7 +50,7 @@ describe('XlsX.js unit tests', function() {
         name: 'Sheet 3'
       }]
     });
-    fs.writeFile(file, sheet.base64, 'base64', done);
+    fs.writeFile(file, sheet, 'base64', done);
   })
 
   it('should generated xlsx be readable', function(done) {
